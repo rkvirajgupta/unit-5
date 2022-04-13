@@ -1,0 +1,42 @@
+.App {
+  width: 30%;
+  margin: auto;
+  text-align: center;
+  border: 1px solid aqua;
+  margin-top: 40px;
+  padding: 0px 30px 50px;
+  border-radius: 25px;
+}
+.flex{
+  display: flex;
+}
+button {
+  margin: 0px 15px;
+  border-radius: 20px;
+  border: 1px solid red;
+  width: 100px;
+  height: 35px;
+  cursor: pointer;
+  color: white;
+  background-color: red;
+  font-size: 1.1em;
+}
+
+h1 {
+  font-size: 40px;
+  background-color: chartreuse;
+  border-radius: 50px;
+}
+
+h2 {
+  margin: 60px;
+  font-size: 40px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
