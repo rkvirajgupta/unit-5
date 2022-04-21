@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "name": "viraj",
+      "age": "24",
+      "address": "Andheri West",
+      "department": "Teaching",
+      "salary": "10000",
+      "status": "Unmarried",
+      "id": 1
+    },
+    {
+      "name": "kuldip",
+      "age": "21",
+      "address": "Bengaluru",
+      "department": "Placements",
+      "salary": "20000",
+      "status": "Unmarried",
+      "id": 2
+    },
+    {
+      "name": "arun",
+      "age": "31",
+      "address": "Miami",
+      "department": "Management",
+      "salary": "37000",
+      "status": "Married",
+      "id": 3
+    },
+    {
+      "name": "sagar",
+      "age": "24",
+      "address": "Andheri West",
+      "department": "Teaching",
+      "salary": "10000",
+      "status": "Unmarried",
+      "id": 4
+    },
+    {
+      "name": "ritu",
+      "age": "23",
+      "address": "indore",
+      "department": "Teaching",
+      "salary": "12222",
+      "status": "Married",
+      "id": 5
+    }
+  ]
+}
