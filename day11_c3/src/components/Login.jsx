@@ -20,7 +20,7 @@ export const Login = () => {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		const { data } = await axios.post(
-			'https://reqres.in/api/register',
+			'https://reqres.in/api/login',
 			loginData
 		);
 		if (data.token) {
