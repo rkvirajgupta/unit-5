@@ -1,16 +1,10 @@
-import { Navigate } from 'react-router-dom'
-import {useContext} from 'react'
-import {AuthContext} from '../contexts/AuthContext'
-import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 export const Logout = () => {
-  const { isAuth, toggleAuth } = useContext(AuthContext);
-  useEffect(()=>{
-     toggleAuth()
-  },[])
-  
-
-  return <div>
-    <Navigate to="/"></Navigate>
-  </div>;
+	const { handleAuth } = useContext(AuthContext);
+	// log user out. it's just an inmemory value in context api
+	handleAuth(false);
+	return Navigate('/');
 };

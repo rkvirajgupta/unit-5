@@ -1,61 +1,51 @@
-import { useState } from 'react' 
-import axios from 'axios';
-import {useContext} from 'react'
-import {AuthContext} from '../contexts/AuthContext'
+import { useContext, useState } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 export const Login = () => {
-  //  use reqres to log user in.
-  const { isAuth, toggleAuth } = useContext(AuthContext);
-  const navigate = useNavigate()
-  const [regUser, setRegUser] = useState({});
-  const handleRegisterChan = e => {
+	//  use reqres to log user in.
+	const { handleAuth } = useContext(AuthContext);
+	const [loginData, setLoginData] = useState({});
+
+	const navigate = useNavigate();
+
+	const handleChange = e => {
 		const { name, value } = e.target;
-		if(name=="username"){
-    setRegUser({
-			...regUser,
-			email: value,
+		setLoginData({
+			...loginData,
+			[name]: value,
 		});
-  }
-  else{
-    setRegUser({
-			...regUser,
-			password: value,
-		});
-  }
 	};
-  const handleRegisterSub = async e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
 		const { data } = await axios.post(
-			'https://reqres.in/api/login',
-			regUser
+			'https://reqres.in/api/register',
+			loginData
 		);
 		if (data.token) {
-			toggleAuth()
-      console.log(isAuth)
-      navigate('/')
+			navigate(-1, { replace: true });
+			handleAuth(true);
 		}
-    
 	};
 
-  return (
-    <form className="loginform">
-      <input
-        name="username"
-        type="text"
-        placeholder="Enter username"
-        className="login_username"
-        onChange={handleRegisterChan}
-      />
-      <input
-        name="password"
-        type="text"
-        placeholder="Enter password"
-        className="login_password"
-        onChange={handleRegisterChan}
-      />
-      <input type="submit" value="SIGN IN" className="login_submit" onClick={handleRegisterSub}/>
-    </form>
-  );
+	return (
+		<form className='loginform' onSubmit={handleSubmit}>
+			<input
+				name='username'
+				type='text'
+				placeholder='Enter username'
+				className='login_username'
+				onChange={handleChange}
+			/>
+			<input
+				name='password'
+				type='text'
+				placeholder='Enter password'
+				className='login_password'
+				onChange={handleChange}
+			/>
+			<input type='submit' value='SIGN IN' className='login_submit' />
+		</form>
+	);
 };
