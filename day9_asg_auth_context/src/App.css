@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+}
+.login{
+  background:red;
+  color:blue;
+  width:22%;
+  margin:auto;
+ 
+}
+
+.logout{
+  background:greenyellow;
+  color:slateblue;
+  width:10%;
+  margin:auto;
+  
+}
