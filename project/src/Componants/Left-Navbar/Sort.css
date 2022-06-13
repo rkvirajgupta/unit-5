@@ -1,0 +1,22 @@
+#sortdiv{
+     display: flex;
+    /* border:1px solid red; */
+    width:94%;
+    height: 30px;
+    justify-content: flex-end;
+    align-items: center;
+    margin:20px;
+}
+#sortdiv>p{
+    margin:2px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;;
+}
+#itemsorter{
+    width:220px;
+    padding:10px;
+    border:2px solid black;
+    border-radius: none;
+    color: grey;
+}

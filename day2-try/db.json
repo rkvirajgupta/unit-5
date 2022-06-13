@@ -1,0 +1,22 @@
+{
+  "rest": [
+    {
+      "name": "viraj",
+      "price": "22",
+      "rate": "5",
+      "id": 1
+    },
+    {
+      "name": "arun",
+      "price": "11",
+      "rate": "5",
+      "id": 2
+    },
+    {
+      "name": "run",
+      "price": "22",
+      "rate": "3",
+      "id": 3
+    }
+  ]
+}

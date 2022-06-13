@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  /* display: flex; */
+  /* justify-content: space-around; */
+}
+.circle{
+  
+  list-style: circle;
+}
+.squre{
+  list-style: square;
+}

@@ -1,0 +1,247 @@
+////////////method 1
+
+function App() {
+  const arr = [1, 2, 3, 4];
+  return (
+    <div className="App">
+      {
+        arr.map((el)=>(
+          <li className={`${el%2===0 ? "circle" :"squre"}`}>{el}</li>
+        ))
+      }
+     
+    </div>
+  );
+}
+
+/////////////method 2
+
+
+function App() {
+  const arr = [
+    {name:"htc",style:"circle"},
+    {name:"micromax",style:"squre"}
+  ];
+  return (
+    <div className="App">
+      {
+        arr.map((el)=>(
+          <li className={el.style}>{el.name}</li>
+        ))
+      }
+     
+    </div>
+  );
+}
+
+//////////////method 3
+
+componenets
+
+category.css 
+.category{
+    color:red;
+    display:flex;
+    width:200px;
+    height:200px;
+}
+
+category.jsx
+import "./category.css";
+
+function Category({image , label}){
+
+    return (<div className = "category">
+
+   <img src={image} alt="" />
+   <b>{label}</b>
+    </div>
+    )
+
+}
+
+export { Category };
+
+app.css   
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+.circle{
+  
+  list-style: circle;
+}
+.squre{
+  list-style: square;
+}
+
+app.jsx
+import './App.css';
+import { Category } from "./components/Category"
+function App() {
+ const navbar = [
+   {
+     image:"./a1.jpg",  // why it is not coming
+     title:"viraj"
+   },{
+     image:"./a2.jpg",
+     title:"rituraj"
+   }
+ ]
+  return (
+    <div className="App">
+     {
+       navbar.map(el=><Category image={el.image} label={el.title}/>)
+     }
+    
+     
+    </div>
+  );
+}
+
+export default App;
+
+
+
+///////////////////method 4
+
+
+import { useState } from 'react';
+import './App.css';
+import { Category } from "./components/Category"
+function App() {
+ const [counter, setCounter] = useState(0);
+ //cost [name , setName]  =  useState("viraj");
+  return (
+    <div className="App">
+     <h3>Counter:{counter}</h3>
+     <button
+     onClick={()=>{
+      //  if( counter>=10){
+      //    return;
+      //  }
+
+      setCounter(counter+1);
+     }} 
+     >add 1 </button>
+
+<button
+     onClick={()=>{
+      //  if( counter==0){
+      //    return;
+      //  }
+
+      setCounter(counter-1);
+     }} 
+     >sub 1 </button>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+////////////////////method 5
+
+import { useState } from 'react';
+import './App.css';
+import { Category } from "./components/Category"
+function App() {
+ const [counter, setCounter] = useState(0);
+
+ const handleAdd = () =>{
+   if(counter>=10){
+     return;
+   }
+   setCounter(counter+1);
+ }
+ const handleSub = () =>{
+  if(counter==0){
+    return;
+  }
+  setCounter(counter-1);
+}
+  return (
+    <div className="App">
+     <h3>Counter:{counter}</h3>
+     <button
+     onClick={handleAdd} 
+     >add 1 </button>
+
+<button
+     onClick={handleSub} 
+     >sub 1 </button>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+//////////////// method 6
+
+import { useState } from 'react';
+import './App.css';
+import { Category } from "./components/Category"
+function App() {
+ const [counter, setCounter] = useState(0);
+
+
+ const handleChange = (value) =>{
+ 
+  setCounter(counter+value);
+}
+  return (
+    <div className="App">
+     <h3>Counter:{counter}</h3>
+    <button onClick={()=>handleChange(1)}>Add 1</button>
+    <button onClick={()=>handleChange(-1)}>Sub 1</button>
+    <p>Number is {counter%2===0 ? "even":"odd"}</p>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+/////////////method 7
+
+import { useState } from 'react';
+import { Todo } from './components/Todo';
+import './App.css'
+function App() {
+   // const [msg,setMsg]=useState("")
+
+   // const [smsg,setSmsg]=useState("")
+
+
+// const getData = (data)=>{
+//    setMsg(data)
+//    console.log("getting data from child",data)
+//    setSmsg(data)
+// } 
+   return (
+      <div className="App">
+         hello
+         <Todo />
+       {/* <p>{msg}</p> */}
+       {/* <p>"2nd",{smsg}</p> */}
+      {/* <First dataFn={getData}></First> */}
+      {/* <Second smsg = {smsg}/> */}
+       </div>
+   )
+}
+
+// function First({dataFn}){
+//    const data= 'hello child';
+//    dataFn(data);
+
+// }
+// function Second ({smsg}){
+//    return <p>{smsg}2nd patta</p>
+// }
+export default App;

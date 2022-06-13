@@ -1,0 +1,11 @@
+.redtext{
+
+    font-family: sans-serif;
+    text-decoration: line-through;
+}
+
+#uniqId{
+    /* font-size: 500px; */
+    color:aqua;
+
+}

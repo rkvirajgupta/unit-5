@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+}
+
+.longred{
+  height: 400px;
+  width: 200px;
+  background-color: red;
+  color:white;
+}
+
+
+.longblue{
+  height: 400px;
+  width: 200px;
+  background-color: blue;
+  color:white;
+}

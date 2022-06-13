@@ -1,0 +1,498 @@
+////////////method 1
+import './App.css';
+import { useState } from 'react';
+import {Hello} from "./components/hello"
+
+function App() {
+
+  const [show,setShow] = useState(true);
+  return (
+    <div className="App">
+     {show ? <Hello/>:null}
+     <button onClick={()=>{setShow(!show)}}> toggle components</button>
+    </div>
+  );
+}
+
+export default App;
+
+//////////////method 2
+
+import './App.css';
+import { useEffect, useState } from 'react';
+import {Hello} from "./components/hello"
+
+function App() {
+  console.log("Before");
+   useEffect(()=>{
+     console.log("Inside Effect");
+   })
+
+   useEffect(()=>{
+    console.log("Inside Effect11");
+  })
+
+   console.log("After")
+  const [show,setShow] = useState(true);
+  return (
+    <div className="App">
+     {show ? <Hello/>:null}
+     <button onClick={()=>{setShow(!show)}}> toggle components</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+//////////////method 3
+
+import "./App.css";
+import { useEffect, useState } from "react";
+import { Hello } from "./components/hello";
+
+function App() {
+  const [todos, setTodos] = useState([]);
+//synchronous
+
+useEffect(()=>{
+  fetch("http://localhost:8080/todos")
+  .then((d) => d.json())
+  .then((data)=>{
+    console.log("Todos",data)
+    setTodos(data)
+  });
+},[])
+
+  return (
+    <div className="App">
+     { todos.map((todo)=>(
+        <div>{todo.id}.{todo.title}</div>
+      ))}
+    
+    </div>
+  );
+}
+
+export default App;
+
+////////////////method 4
+
+
+import "./App.css";
+import { useEffect, useState } from "react";
+import { Hello } from "./components/hello";
+
+function App() {
+  const [todos, setTodos] = useState([]);
+//synchronous
+
+useEffect(()=>{
+ 
+async function getData(){
+
+  const data = await  fetch("http://localhost:8080/todos")
+  .then((d) => d.json());
+  
+
+    setTodos(data);
+}
+  
+getData();
+
+},[])
+
+  return (
+    <div className="App">
+     { todos.map((todo)=>(
+        <div>{todo.id}.{todo.title}</div>
+      ))}
+    
+    </div>
+  );
+}
+
+export default App;
+
+
+////////////// method 5
+
+import "./App.css";
+import { useEffect, useState } from "react";
+import { Hello } from "./components/hello";
+
+function App() {
+  const [counter, setCounter] = useState(0);
+  const [age, setAge] = useState(10);
+
+//synchronous
+
+// useEffect(()=>{},[])  syntax
+
+useEffect(()=>{
+  console.log("Inside effect 1")
+},[counter]) 
+useEffect(()=>{
+  console.log("Inside effect 2")
+},[age]) 
+useEffect(()=>{
+  console.log("Inside effect 3")
+},[age,counter]) 
+
+  return (
+    <div className="App">
+    <h3>Counter:{counter}</h3>
+    <button onClick={()=>{
+      setCounter(counter+1);
+    }}>add 1</button>
+
+<button onClick={()=>{
+      setAge(age+1);
+    }}>age 1</button>
+    
+    </div>
+  );
+}
+
+export default App;
+///////////////// method 6   todo.jsx
+
+import { useState, useEffect } from "react";
+
+export const Todos = () => {
+  const [todos, setTodos] = useState([]);
+
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const data = await fetch("http://localhost:8080/todos").then((d) =>
+      d.json()
+    );
+
+    setTodos(data);
+  };
+
+  return (
+    <div>
+      <input 
+      onChange={(e)=>setText(e.target.value)}
+      type="text" placeholder="Enter todo" />
+
+      <button onClick={()=>{
+           const payload ={
+               title:text,
+               status:false
+           };
+           fetch("http://localhost:8080/todos",{
+               method:"POST",
+               headers:{
+                   "content-type":"application/json"
+               },
+               body:JSON.stringify(payload)
+           });
+      // axios.post("http://localhost:8080/todos",payload)
+      }}>Add todo</button>
+      {todos.map((t) => (
+        <div>{t.title}</div>
+      ))}
+    </div>
+  );
+};
+
+//////////////method 7
+
+import { useState, useEffect } from "react";
+
+export const Todos = () => {
+  const [todos, setTodos] = useState([]);
+
+  const [text, setText] = useState("");
+
+  const [loading,setLoading] = useState(true);//try false
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const data = await fetch("http://localhost:8080/todos").then((d) =>
+      d.json()
+    );
+
+    setTodos(data);
+    setLoading(false); //try true
+  };
+
+  return loading ?("Loading.....") : (
+    <div>
+      <input 
+      onChange={(e)=>setText(e.target.value)}
+      type="text" placeholder="Enter todo" />
+
+      <button onClick={()=>{
+           const payload ={
+               title:text,
+               status:false
+           };
+           fetch("http://localhost:8080/todos",{
+               method:"POST",
+               headers:{
+                   "content-type":"application/json"
+               },
+               body:JSON.stringify(payload)
+           }).then(()=>{
+               getData();
+           })
+      // axios.post("http://localhost:8080/todos",payload)
+      }}>Add todo</button>
+      {todos.map((t) => (
+        <div>{t.title}</div>
+      ))}
+    </div>
+  );
+};
+
+///////////////method 8
+
+todos.jsx
+import { useState, useEffect } from "react";
+
+export const Todos = () => {
+  const [todos, setTodos] = useState([]);
+
+  const [text, setText] = useState("");
+
+  const [loading, setLoading] = useState(true); //try false
+
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+      console.log("mounded todos");
+    getData();
+
+  //curried function
+  return () =>{
+      //closure
+      console.log("unmounted todos")
+  }
+
+
+  }, [page]);
+
+  const getData = async () => {
+    const data = await fetch(
+      `http://localhost:8080/todos?_page=${page}&_limit=3`
+    ).then((d) => d.json());
+
+    setTodos(data);
+    setLoading(false); //try true
+  };
+
+  console.log(page)
+  return loading ? (
+    "Loading....."
+  ) : (
+    <div>
+      <input
+        onChange={(e) => setText(e.target.value)}
+        type="text"
+        placeholder="Enter todo"
+      />
+
+      <button
+        onClick={() => {
+          const payload = {
+            title: text,
+            status: false,
+          };
+          fetch("http://localhost:8080/todos", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }).then(() => {
+            getData();
+          });
+          // axios.post("http://localhost:8080/todos",payload)
+        }}
+      >
+        Add todo
+      </button>
+      {todos.map((t) => (
+        <div>
+          {t.id}
+          {t.title}
+        </div>
+      ))}
+      <button
+        onClick={() => {
+          setPage(page - 1);
+        }}
+        
+      >
+        Prev
+      </button>
+      <button
+        onClick={() => {
+          setPage(page + 1);
+        }}
+      >
+        Next
+      </button>
+    </div>
+  );
+};
+
+app.jsx
+import { useState } from "react";
+import "./App.css";
+
+import {Todos} from "./components/Todos"
+function App() {
+ 
+const [show,setShow] = useState(true);
+
+
+  return (
+    <div className="App">
+    
+    {show ? <Todos/>:null}
+    
+    <button onClick={()=>{
+      setShow(!show);
+    }}>{show?"Hide":"Show"}todos</button>
+    </div>
+  );
+}
+
+export default App;
+
+/////////////method 9 
+
+counter.jsx
+
+import { useEffect, useState } from "react";
+
+export const Counter = () =>{
+    const [count,setCount] = useState(10);
+
+// useEffect(()=>{
+//     setInterval(()=>{
+//         setCount(count -1);
+//     },1000)
+// },[])  it will render many setIntervals try it 
+
+useEffect(()=>{
+    setInterval(()=>{
+        setCount((prevValue) =>{
+            if(prevValue<=0){
+                return 0;
+            }
+            return prevValue - 1;
+        });
+    },1000)
+},[])
+
+
+return (
+    <div>
+        <h3>Count:{count}</h3>
+        <button
+        onClick={()=>{
+            setCount((count)=>{
+                if(count>15) return 15;
+                // return "hello"
+                return count+1
+            })
+        }}>add</button>
+    </div>
+)
+
+
+}
+
+
+////////////////////method 10
+
+counter.jsx
+
+import { useEffect, useState } from "react";
+
+export const Counter = () =>{
+    const [count,setCount] = useState(10);
+
+// useEffect(()=>{
+//     setInterval(()=>{
+//         setCount(count -1);
+//     },1000)
+// },[])  it will render many setIntervals try it 
+
+useEffect(()=>{
+ let id=   setInterval(()=>{
+        setCount((prevValue) =>{
+            console.log("memory leak")
+            if(prevValue<=0){
+                clearInterval(id)
+                return 0;
+            }
+            return prevValue - 1;
+        });
+    },1000)
+
+    return ()=>{
+        clearInterval(id);   //why line no 23 to 25 because of memory leak commmet all and console after mounting
+    }
+},[])
+
+
+return (
+    <div>
+        <h3>Count:{count}</h3>
+        <button
+        onClick={()=>{
+            setCount((count)=>{
+                if(count>15) return 15;
+                // return "hello"
+                return count+1
+            })
+        }}>add</button>
+    </div>
+)
+
+
+}
+
+app.jsx
+
+import { useState } from "react";
+import "./App.css";
+
+import {Todos} from "./components/Todos"
+import {Counter} from "./components/Counter"
+
+function App() {
+ 
+const [show,setShow] = useState(true);
+
+
+  return (
+    <div className="App">
+    
+    {show ? <Todos/>:null}
+    
+    <button onClick={()=>{
+      setShow(!show);
+    }}>{show?"Hide":"Show"}todos</button>
+
+   
+    {show ?  <Counter/>:null}
+    </div>
+  );
+}
+
+export default App;

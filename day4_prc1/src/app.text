@@ -1,0 +1,131 @@
+////////////////method 1 parent to child
+
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  const data = "hello c1"
+  return (
+    <div className="App">
+    <First data={data} />
+    <Second />
+    </div>
+  );
+}
+
+function First({ data }){
+ console.log("recevied from parent",data)
+  return <div>First Child,"recevied data from parent ,{data}</div>
+}
+
+
+function Second(){
+  return <div>Second Child</div>
+}
+export default App;
+
+
+//////////////////method 2 child to parent
+
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+ const getData = (data) =>{
+   console.log("getting data from child:" ,data)
+ }
+  return (
+    <div className="App">
+    <First dataFn={getData} />
+    <Second />
+    </div>
+  );
+}
+
+function First({ dataFn }){
+const data = "hello child1"
+dataFn(data);
+ return <div>First Child</div>
+}
+
+
+function Second(){
+  return <div>Second Child</div>
+}
+export default App;
+
+////////////method 3 getting data from sibling
+
+import logo from './logo.svg';
+import './App.css';
+import { useState } from 'react';
+
+function App() {
+
+   const [message,setMessage] = useState("");
+
+ const getData = (data) =>{
+   console.log("getting data from child:" ,data)
+   setMessage(data)
+ }
+  return (
+    <div className="App">
+    <First dataFn={getData} />
+    <Second message = {message} />
+    </div>
+  );
+}
+
+function First({ dataFn }){
+const data = "hello child1"
+dataFn(data);
+ return <div>First Child</div>
+}
+
+
+function Second({ message }){
+
+  console.log("got data from sibling:",message)
+  return <div>Second Child</div>
+}
+export default App;
+
+
+//////////////////method 4 
+
+import logo from './logo.svg';
+import './App.css';
+import { useState } from 'react';
+
+function App() {
+
+   const [message,setMessage] = useState("");
+
+ const getData = (data) =>{
+   console.log("getting data from child:" ,data)
+   setMessage(data)
+ }
+  return (
+    <div className="App">
+    <First dataFn={getData} />
+    <Second message = {message} />
+    </div>
+  );
+}
+
+function First({ dataFn }){
+const data = "hello child1"
+// dataFn(data);
+ return <div>First Child <button onClick={()=>dataFn(data)}>send data</button></div>
+}
+
+
+function Second({ message }){
+
+  console.log("got data from sibling:",message)
+  return <div>Second Child,{message}</div>
+}
+export default App;
+
+///////////////method 5
+
