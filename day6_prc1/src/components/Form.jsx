@@ -6,6 +6,7 @@ export const Form = () => {
 const [formData,setFormData] = useState({
     username : "",
     age:""
+    
 })
 
 const handleChange =(e) =>{
@@ -52,7 +53,7 @@ const handleSubmit =(e) =>{
     <form  onSubmit={handleSubmit}>
       <input 
       onChange={handleChange}
-      value = {formData.username}
+      // value = {formData.username} //not needable 
       type="text" 
       placeholder="Enter Username" 
       id = "username"
@@ -60,10 +61,10 @@ const handleSubmit =(e) =>{
 
       <input 
       onChange={handleChange}
-      value = {formData.age}
+      // value = {formData.age} serch on google
       type="number" 
       placeholder="Enter Age" 
-      id="age"
+      id="age"  //use name ="age" instead of id
       />
       
       <input type="submit" value="submit" />
