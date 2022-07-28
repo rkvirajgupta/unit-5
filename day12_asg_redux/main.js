@@ -15,6 +15,7 @@ document.getElementById("button").addEventListener("click",function(){
   let list= document.querySelector('#app')
   list.innerHTML=""
   store.dispatch(addTodo(inp))
+  console.log(store.getState())
   {store.getState().todos.map((e,i)=>{
     let divmain=document.createElement("div")
     divmain.id="divmain"
@@ -33,7 +34,7 @@ document.getElementById("button").addEventListener("click",function(){
     //  })
 
     btn2.addEventListener("click",function(){
-      {btn2.innerText = "Not Done" ? btn2.innerText = "✔️" : btn2.innerText = "Not Done"}
+      {btn2.innerText == "Not Done" ? btn2.innerText = "✔️" : btn2.innerText = "Not Done"}
     })
 
    divmain.append(div,btn2)

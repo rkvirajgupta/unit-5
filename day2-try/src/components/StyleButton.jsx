@@ -1,12 +1,23 @@
 import styled from 'styled-components'
 
-const StyleButton = ({children,onClick})=>{
+var StyleButton = ({children,onClick})=>{
 
 
     return (
         <button onClick={onClick}>{children}</button>
     )
 }
+
+StyleButton=styled.button`
+color:red;
+    border:1px solid red;
+    width:20%;
+    margin:auto;
+    &:hover{
+        background-color: yellow;
+    }
+
+`
 
 const Cack = styled.p`
     color:red;

@@ -52,6 +52,7 @@ const handleSubmit =(e) =>{
   return (
     <form  onSubmit={handleSubmit}>
       <input 
+      required //it will not take empty box you need to feel it.
       onChange={handleChange}
       // value = {formData.username} //not needable 
       type="text" 
@@ -60,6 +61,7 @@ const handleSubmit =(e) =>{
       />
 
       <input 
+      required
       onChange={handleChange}
       // value = {formData.age} serch on google
       type="number" 

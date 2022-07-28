@@ -16,10 +16,10 @@ const location = useLocation();
 console.log("location",location);
 const [params] = useSearchParams();
 
-console.log("page",params.get("page"));
+console.log(params.get("page"));
 console.log("age",params.get("age"));
+
 console.log(useQuery("page"));
-// use this link to http://localhost:3000/users?page=2&age=7  get line 19,20,21 answer in console
 
 useEffect(()=>{
 

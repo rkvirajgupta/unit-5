@@ -10,7 +10,8 @@ const [users,setUsers] = useState([]);
 
 useEffect(()=>{
 
-    axios.get("https://reqres.in/api/users").then(({data})=>{
+    axios.get("https://reqres.in/api/users")
+    .then(({data})=>{
     
     console.log(data)
     setUsers(data.data)
