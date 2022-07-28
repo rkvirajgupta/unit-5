@@ -1,0 +1,13 @@
+
+#diver {
+    display: flex;
+    margin:auto;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+margin-top: 10px;
+    justify-content:space-around;
+    width: 35%;
+    height: 40px;
+}

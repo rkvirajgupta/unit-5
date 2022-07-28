@@ -1,0 +1,16 @@
+.headoftable{
+    background-color: rgb(145, 143, 143);
+    height: 20px;
+    text-align: center;
+}
+.contain-table{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+
+}
+.user {
+    text-align: center;
+width:34%;
+margin:auto;
+  }

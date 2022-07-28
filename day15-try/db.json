@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "empId":1,
+      "empName":"viraj",
+      "empAdd" :"indore",
+      "empbatch":"a1",
+      "empsection":"a"
+
+
+   },
+   {
+    "empId":2,
+    "empName":"raj",
+    "empAdd" :"bhopal",
+    "empbatch":"a2",
+    "empsection":"b"
+
+
+ },{
+  "empId":3,
+  "empName":"abhiraj",
+  "empAdd" :"dewash",
+  "empbatch":"a3",
+  "empsection":"c"
+
+
+}
+    
+  ]
+}

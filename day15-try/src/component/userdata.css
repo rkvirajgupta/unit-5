@@ -1,0 +1,11 @@
+
+
+#maindiv{
+    display: flex;
+    justify-content: space-around;
+}
+#user {
+    text-align: center;
+    width:18%;
+    margin:auto;
+  }

@@ -1,0 +1,49 @@
+{
+  "todos": [
+    {
+      "title": "queen sharma",
+      "status": false,
+      "id": 1
+    },
+    {
+      "title": "kalyan gupta",
+      "status": true,
+      "id": 2
+    },
+    {
+      "title": "siraj gupta",
+      "status": false,
+      "id": 3
+    },
+    {
+      "title": "viraj gupta",
+      "status": true,
+      "id": 4
+    },
+    {
+      "title": "ram gupta",
+      "status": false,
+      "id": 5
+    },
+    {
+      "title": "arjun gupta",
+      "status": true,
+      "id": 6
+    },
+    {
+      "title": "samya gupta",
+      "status": false,
+      "id": 7
+    },
+    {
+      "title": "my gupta",
+      "status": true,
+      "id": 8
+    },
+    {
+      "title": "veena sharma",
+      "status": false,
+      "id": 9
+    }
+  ]
+}
