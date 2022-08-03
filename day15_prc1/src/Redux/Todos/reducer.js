@@ -33,7 +33,8 @@ switch(type){
         return {
             ...store,
             todos:store.todos.map((todo)=>
-            todo.id===payload ? {...todo,status:!todo.status} : todo)
+            todo.id===payload ? {...todo,
+            status:!todo.status} : todo)
         }
     }
     default:
