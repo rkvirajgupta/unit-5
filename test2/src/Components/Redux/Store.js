@@ -1,17 +1,18 @@
 
 
-import { applyMiddleware, combineReducers, legacy_createStore as CreateStore } from "redux";
-import { TodoReducer } from "./Todo/TodoReducer";
 
-import thunk from 'redux-thunk'
+
+import {combineReducers, legacy_createStore as createStore}  from 'redux';
+import { TodoReducer } from './Todo/TodoReducer';
+
+
 
 const rootReducer = combineReducers({
     todos:TodoReducer
-
 })
-export const store = CreateStore(
+
+
+export const store = createStore(
     rootReducer,
-    applyMiddleware(thunk)
 
-);
-
+)

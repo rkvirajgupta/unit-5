@@ -1,49 +1,40 @@
-import { useSyncExternalStore } from "react";
-import { useEffect } from "react";
-import { useState } from "react"
-import {useSelector,useDispatch} from 'react-redux'
-import {adder,  addTodo, DELETE, deleteTodo, getTodos, sortTodo, toggleTodo } from "./Redux/Todo/TodoAction";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux"
+import { addTodo, sorter } from "./Redux/Todo/TodoAction";
+
+
+
+
 
 export const Todo = ()=>{
 
- const [text,setText] = useState("");
- const dispatch = useDispatch();
- const todos = useSelector((store)=>store.todos.todo)
-useEffect(()=>{
-    dispatch(getTodos())
-},[])
 
-
-
+    const todos = useSelector((store)=>store.todos.todos);
+     
+    const [text,setText] = useState()
+    const dispatch = useDispatch()
+    const handleTodos =(value)=>{
+        dispatch(addTodo({title:value,
+        status:false}))
+    }
     return <div>
-        <input type="text" value={text} onChange={(e)=>setText(e.target.value)} />
+        <input type="text" onInput={(e)=>setText(e.target.value)} />
         <button onClick={()=>{
-         dispatch(adder(text))
-         setText("")
-       }}>add todo</button>
-       <select 
-            onChange={(e)=>{
-                dispatch(sortTodo(e.target.value))
-            }} >
-    <option value="id">sort by id</option>
-    <option value="status">sort by status</option>
-    <option value="title">sort by title</option>
-
-
-            </select>
-        <div>
-            {todos.map((e)=>{
-                return <p key={e.id}>{e.title}{e.id}
-                      <button onClick={()=>{
-                        dispatch(deleteTodo(e.id))
-                      }}>delete</button>
-                      <button 
-                      onClick={()=>{
-                        dispatch(toggleTodo(e.id))
-                      }}
-                      >{e.status==true?'toggle':'nottoggle'}</button>
-                </p>
-            })}
-        </div>
+            handleTodos(text)
+        }}>add todos</button>
+        <button onClick={()=>{
+            dispatch(sorter())
+        }}>Sort</button>
+        {todos.map((e)=>{
+            return <div>                
+                {e.title}
+                {e.id}
+            </div>
+        })}
     </div>
+
+
+
+
 }
