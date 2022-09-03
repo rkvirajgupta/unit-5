@@ -18,6 +18,7 @@ export const Inventory = () => {
       }
 
       inv[`${item}`] = inv[`${item}`] + value;
+      // inv[item] = inv[item] + value;
 
       setInv({ ...inv });
    }
